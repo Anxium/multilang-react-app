@@ -1,3 +1,4 @@
+// This file is imported into "./index.js"
 import i18n from 'i18next';
 import backend from 'i18next-xhr-backend';
 import languageDetector from 'i18next-browser-languagedetector';
