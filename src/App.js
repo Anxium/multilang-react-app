@@ -1,26 +1,64 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { Component, Suspense, Fragment } from 'react';
+import { useTranslation } from 'react-i18next';
+
 import './App.css';
 
-function App() {
+// Component Test
+const Test = () => {
+  const { t, i18n } = useTranslation();
+
+  const lng = lng => {
+    i18n.changeLanguage(lng)
+  }
+
   return (
+    <Fragment>
+      <p>{t('title')}</p>
+      <p>{t('description')}</p>
+      <div>
+        <button onClick={() => lng('en')}>EN</button>
+        <button onClick={() => lng('fr')}>FR</button>
+        <button onClick={() => lng('nl')}>NL</button>
+      </div>
+    </Fragment>
+  )
+}
+
+// component fallback
+const Loading = () => {
+  return(
+    <h1>Loading...</h1>
+  )
+}
+
+//component page
+class Page extends Component {
+  constructor(props) { 
+    super(props);
+
+    this.state = {
+      language: 'fr'
+    }
+  }
+
+  render() {
+    return (
+      <Test />
+    );
+  }
+}
+
+// Main component
+const App = () => {
+  return(
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <Suspense fallback={<Loading />}>
+          <Page/>
+        </Suspense>
       </header>
     </div>
-  );
+  )
 }
 
 export default App;
