@@ -1,4 +1,5 @@
 {
     "title": "Hello, welcome to my multilingual application",
-    "description":"I made it with i18next"
+    "description":"I made it with i18next",
+    "who": "And my name is {{ name }}"
 }

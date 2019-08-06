@@ -11,10 +11,17 @@ const Page = () => {
     i18n.changeLanguage(lng)
   }
 
+  const myData = {
+    firstName: 'Axel',
+    surname: 'Anxium',
+    age: 28
+  };
+
   return (
     <Fragment>
       <p>{t('title')}</p>
       <p>{t('description')}</p>
+      <p>{t('who', { name: myData.surname })}</p>
       <div>
         <button onClick={() => _handleLanguage('en')}>EN</button>
         <button onClick={() => _handleLanguage('fr')}>FR</button>
