@@ -1,13 +1,13 @@
-import React, { Component, Suspense, Fragment } from 'react';
+import React, { Suspense, Fragment } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import './App.css';
 
-// Component Test
-const Test = () => {
+// Component Page
+const Page = () => {
   const { t, i18n } = useTranslation();
 
-  const lng = lng => {
+  const _handleLanguage = lng => {
     i18n.changeLanguage(lng)
   }
 
@@ -16,9 +16,9 @@ const Test = () => {
       <p>{t('title')}</p>
       <p>{t('description')}</p>
       <div>
-        <button onClick={() => lng('en')}>EN</button>
-        <button onClick={() => lng('fr')}>FR</button>
-        <button onClick={() => lng('nl')}>NL</button>
+        <button onClick={() => _handleLanguage('en')}>EN</button>
+        <button onClick={() => _handleLanguage('fr')}>FR</button>
+        <button onClick={() => _handleLanguage('nl')}>NL</button>
       </div>
     </Fragment>
   )
@@ -27,25 +27,8 @@ const Test = () => {
 // component fallback
 const Loading = () => {
   return(
-    <h1>Loading...</h1>
+    <h3>Loading...</h3>
   )
-}
-
-//component page
-class Page extends Component {
-  constructor(props) { 
-    super(props);
-
-    this.state = {
-      language: 'fr'
-    }
-  }
-
-  render() {
-    return (
-      <Test />
-    );
-  }
 }
 
 // Main component
